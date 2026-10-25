@@ -74,7 +74,7 @@
     const price = (k) => (yr ? `${money(plans[k].yearly)}<small>/year</small>` : `${money(plans[k].monthly)}<small>/month</small>`);
     return `<div class="wrap">
     <section class="hero"><div class="herologo"><img class="hl" src="img/logo-white.png" alt="${esc(NAME())}"></div>
-      <h1>Smarter learning.<br>Simple algebra.</h1><p class="sub">Algebra 1 &amp; 2, one small step a day</p>
+      <h1>Smarter learning.<br>Simple solving.</h1><p class="sub">Algebra 1 &amp; 2, one small step a day</p>
       <p class="lead">Short lessons, endless practice and a tutor that teaches the way <i>you</i> learn. Parents get a simple weekly progress report.</p>
       <div class="cta">${a ? '<a class="btn lg" href="#/app">Go to my dashboard</a>' : '<a class="btn lg" href="#/signup">Start your 7-day free trial</a><a class="btn sec lg" href="#/login">Sign in</a>'}</div>
       <p class="small mute" style="margin-top:12px">No credit card needed to start. Free Basic plan after the trial.</p></section>
@@ -99,7 +99,7 @@
       <details><summary>Can siblings share one account?</summary><p class="mute">Yes. The Family plan has separate profiles, goals and reports for up to four students.</p></details>
     </section></div>${foot()}`;
   };
-  const foot = () => `<footer class="foot"><div class="wrap">© ${new Date().getFullYear()} ${esc(NAME())}. Smarter learning. Simple algebra. Demo build: accounts and progress are stored in this browser.</div></footer>`;
+  const foot = () => `<footer class="foot"><div class="wrap">© ${new Date().getFullYear()} ${esc(NAME())}. Smarter learning. Simple solving. Demo build: accounts and progress are stored in this browser.</div></footer>`;
 
   function planCards(inApp) {
     const plans = AP.PLANS, yr = S.cycle === 'yearly', cur = inApp ? AP.tier() : null, a = AP.acct();
