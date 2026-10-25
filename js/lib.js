@@ -57,8 +57,8 @@
   // ---------- plans and entitlements ----------
   AP.PLANS = {
     basic: { name: 'Basic', monthly: 0, yearly: 0 },
-    premium: { name: 'Premium', monthly: 7.99, yearly: 59.99 },
-    family: { name: 'Family', monthly: 12.99, yearly: 99 },
+    premium: { name: 'Premium', monthly: 12.99, yearly: 89.99 },
+    family: { name: 'Family', monthly: 15.99, yearly: 114.99 },
   };
   AP.tier = function (a) {
     a = a || AP.acct();
