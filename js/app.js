@@ -11,8 +11,7 @@
   const wd = (d) => new Date(d + 'T12:00:00').toLocaleDateString(undefined, { weekday: 'short' });
   const plural = (n, w) => n + ' ' + w + (n === 1 ? '' : 's');
   const ring = (a, b) => { const p = b ? Math.min(100, Math.round((a / b) * 100)) : 0; return `<div class="ring ${p >= 100 ? 'ok' : ''}" style="--p:${p}"><span>${a}/${b}</span></div>`; };
-  const pic = (n, cls, alt) => `<picture><source media="(prefers-color-scheme: dark)" srcset="img/${n}-dark.png"><img class="${cls}" src="img/${n}.png" alt="${alt}"></picture>`;
-  const brandHTML = () => pic('emblem', 'bm', '') + pic('wordmark', 'wm', esc(NAME()));
+  const brandHTML = () => `<img class="bm" src="img/emblem-white.png" alt=""><img class="wm" src="img/wordmark-white.png" alt="${esc(NAME())}">`;
   const toast = (m) => { const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 3800); };
   window.addEventListener('ap:toast', (e) => toast(e.detail));
 
@@ -74,7 +73,7 @@
     const plans = AP.PLANS, yr = S.cycle === 'yearly', a = AP.acct();
     const price = (k) => (yr ? `${money(plans[k].yearly)}<small>/year</small>` : `${money(plans[k].monthly)}<small>/month</small>`);
     return `<div class="wrap">
-    <section class="hero"><div class="herologo">${pic('logo', 'hl', esc(NAME()))}</div>
+    <section class="hero"><div class="herologo"><img class="hl" src="img/logo-white.png" alt="${esc(NAME())}"></div>
       <h1>Algebra 1 &amp; 2, one small step a day</h1>
       <p class="lead">Short lessons, endless practice and a tutor that teaches the way <i>you</i> learn. Parents get a simple weekly progress report.</p>
       <div class="cta">${a ? '<a class="btn lg" href="#/app">Go to my dashboard</a>' : '<a class="btn lg" href="#/signup">Start your 7-day free trial</a><a class="btn sec lg" href="#/login">Sign in</a>'}</div>

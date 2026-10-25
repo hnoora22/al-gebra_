@@ -1,12 +1,12 @@
 :root{
   --bg:#f6f7fb;--card:#fff;--ink:#1c2233;--mute:#5d6680;--line:#e3e6f0;
-  --pri:#6b3fa0;--pri-d:#52307f;--pri-l:#f0e9fb;
+  --pri:#3b5bdb;--pri-d:#2c46b3;--pri-l:#e7ecff;
   --ok:#2b8a3e;--ok-l:#e6f6ea;--bad:#c92a2a;--bad-l:#fdecec;--warn:#b35c00;--warn-l:#fff3df;
   --r:14px;--sh:0 1px 2px rgba(20,30,70,.06),0 6px 18px rgba(20,30,70,.06);
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
-  :root{--bg:#10131c;--card:#181c28;--ink:#eef0f7;--mute:#a3abc4;--line:#2a3042;--pri:#b79cff;--pri-d:#cdb8ff;--pri-l:#2a2145;--ok:#6fd187;--ok-l:#17301f;--bad:#ff8787;--bad-l:#3a1c1c;--warn:#ffc078;--warn-l:#392a12;color-scheme:dark}
+  :root{--bg:#10131c;--card:#181c28;--ink:#eef0f7;--mute:#a3abc4;--line:#2a3042;--pri:#7c93ff;--pri-d:#9db0ff;--pri-l:#232a4a;--ok:#6fd187;--ok-l:#17301f;--bad:#ff8787;--bad-l:#3a1c1c;--warn:#ffc078;--warn-l:#392a12;color-scheme:dark}
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -158,3 +158,28 @@ footer.foot{border-top:1px solid var(--line);padding:24px 0;color:var(--mute);fo
 .brand .bm{height:42px}
 .brand .wm{height:38px}
 .nav a{padding:7px 9px}
+
+/* white logo on blue: header bar and hero */
+.topbar{background:#3b5bdb;border-bottom:0}
+.topbar .brand{color:#fff}
+.topbar .nav a{color:rgba(255,255,255,.85)}
+.topbar .nav a:hover,.topbar .nav a.on{background:rgba(255,255,255,.18);color:#fff}
+.topbar .small.mute{color:rgba(255,255,255,.9)}
+.topbar select{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.45)}
+.topbar select option{color:#1c2233;background:#fff}
+.topbar .chip{background:#fff;color:#2c46b3}
+.topbar .chip.ok{background:#fff;color:#2b8a3e}
+.topbar .btn{background:#fff;color:#2c46b3}
+.topbar .btn:hover{background:#e7ecff}
+.topbar .btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.55)}
+.topbar .btn.ghost:hover{background:rgba(255,255,255,.18)}
+.topbar :focus-visible{outline-color:#fff}
+.hero{background:#3b5bdb;color:#fff;border-radius:22px;padding:34px 18px 30px;margin-top:6px}
+.hero h1{color:#fff}
+.hero p.lead{color:rgba(255,255,255,.9)}
+.hero .mute{color:rgba(255,255,255,.85)}
+.hero .btn{background:#fff;color:#2c46b3}
+.hero .btn:hover{background:#e7ecff}
+.hero .btn.sec{background:transparent;color:#fff;border:1.5px solid #fff}
+.hero .btn.sec:hover{background:rgba(255,255,255,.16)}
+.hero :focus-visible{outline-color:#fff}
