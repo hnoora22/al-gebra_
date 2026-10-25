@@ -74,7 +74,7 @@
     const price = (k) => (yr ? `${money(plans[k].yearly)}<small>/year</small>` : `${money(plans[k].monthly)}<small>/month</small>`);
     return `<div class="wrap">
     <section class="hero"><div class="herologo"><img class="hl" src="img/logo-white.png" alt="${esc(NAME())}"></div>
-      <h1>Algebra 1 &amp; 2, one small step a day</h1>
+      <h1>Smarter learning.<br>Simple algebra.</h1><p class="sub">Algebra 1 &amp; 2, one small step a day</p>
       <p class="lead">Short lessons, endless practice and a tutor that teaches the way <i>you</i> learn. Parents get a simple weekly progress report.</p>
       <div class="cta">${a ? '<a class="btn lg" href="#/app">Go to my dashboard</a>' : '<a class="btn lg" href="#/signup">Start your 7-day free trial</a><a class="btn sec lg" href="#/login">Sign in</a>'}</div>
       <p class="small mute" style="margin-top:12px">No credit card needed to start. Free Basic plan after the trial.</p></section>
@@ -99,7 +99,7 @@
       <details><summary>Can siblings share one account?</summary><p class="mute">Yes. The Family plan has separate profiles, goals and reports for up to four students.</p></details>
     </section></div>${foot()}`;
   };
-  const foot = () => `<footer class="foot"><div class="wrap">© ${new Date().getFullYear()} ${esc(NAME())}. Demo build: accounts and progress are stored in this browser.</div></footer>`;
+  const foot = () => `<footer class="foot"><div class="wrap">© ${new Date().getFullYear()} ${esc(NAME())}. Smarter learning. Simple algebra. Demo build: accounts and progress are stored in this browser.</div></footer>`;
 
   function planCards(inApp) {
     const plans = AP.PLANS, yr = S.cycle === 'yearly', cur = inApp ? AP.tier() : null, a = AP.acct();
@@ -175,6 +175,12 @@
       <div class="field"><label class="radio"><input type="checkbox" name="remind" ${g.remind ? 'checked' : ''}> Remind me to study</label><input type="time" name="time" value="${esc(g.time)}" aria-label="Reminder time" style="max-width:160px"><p class="small mute" style="margin:6px 0 0">Reminders appear as a browser notification while the site is open. Allow notifications when asked.</p></div>`;
   }
 
+  function courseProgress(c, nl) {
+    const done = Object.keys(c.done).length, total = AP.LESSONS.length, pc = Math.round((done / total) * 100);
+    return `<div class="card courseprog"><div class="row between"><b>Algebra 1 course progress</b><span><b class="pcbig">${pc}%</b> <span class="small mute">${done} of ${total} lessons complete</span></span></div>
+      <div class="bar big" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${pc}" aria-label="Algebra 1 course progress"><i style="width:${pc}%"></i></div>
+      <p class="small mute" style="margin:8px 0 0">${nl ? 'Next up: ' + nl.id + ' ' + esc(nl.title) + ' (Unit ' + nl.unit + ': ' + esc(AP.unitById(nl.unit).title) + ')' : 'You finished every lesson. Amazing!'}</p></div>`;
+  }
   // ---------- dashboard ----------
   V.app = function () {
     const a = AP.acct(), c = AP.child(), ent = AP.ent(), g = AP.goalProgress(c), ex = AP.examSeason(), nl = AP.nextLesson(c), st = AP.streak(c), r = AP.report(c);
@@ -183,6 +189,7 @@
     return `<div class="wrap">
       <div class="row between" style="margin-bottom:12px"><div><h1 style="font-size:1.7rem;margin:0">Hi ${esc(c.name)} 👋</h1><p class="mute" style="margin:0">${g.met ? 'Daily goals complete. Great job!' : 'Here is what is on for today.'}</p></div>
         <div class="row"><span class="chip warn">🔥 ${plural(st, 'day')} streak</span></div></div>
+      ${courseProgress(c, nl)}
       ${!c.placement || !c.style || !c.onboarded ? `<div class="banner warn"><div><b>Finish setting up ${esc(c.name)}'s profile</b>The skills check and goals help us pick the right lessons.</div><a class="btn" href="#/onboarding">Continue setup</a></div>` : ''}
       ${ent.tier === 'trial' ? `<div class="banner trial"><div><b>Free trial: ${plural(AP.trialDaysLeft(), 'day')} left</b>Every feature is unlocked. After the trial you move to the free Basic plan.</div><a class="btn" href="#/plans">Choose a plan</a></div>` : ent.tier === 'basic' ? `<div class="banner warn"><div><b>You are on Basic</b>1 lesson and 2 worksheets a day. Upgrade for unlimited lessons, printable worksheets and the AI tutor.</div><a class="btn" href="#/plans">Upgrade</a></div>` : ''}
       ${ex.active ? `<div class="banner ok"><div><b>📅 ${esc(ex.label)}: extra practice is open</b>Mixed review sets from every topic you have studied. Unlimited sets until exams are over.</div><a class="btn" href="#/exam">Start exam review</a></div>` : ''}
