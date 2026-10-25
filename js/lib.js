@@ -5,7 +5,7 @@
   const AP = window.AP;
   const KEY = 'algebrapath.v1';
   const DAY = 864e5;
-  AP.config = Object.assign({ APP_NAME: 'AlgebraPath', TRIAL_DAYS: 7, AI_PROXY_URL: '' }, window.AP_CONFIG || {});
+  AP.config = Object.assign({ APP_NAME: 'Al-Gebra', TRIAL_DAYS: 7, AI_PROXY_URL: '' }, window.AP_CONFIG || {});
 
   // ---------- storage ----------
   const fresh = () => ({ accounts: {}, session: null, sim: { dayOffset: 0, forceExam: false } });

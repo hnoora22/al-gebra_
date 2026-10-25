@@ -3,7 +3,7 @@
    profile; this returns { reply }. NOT TESTED against the live API yet: test it before the demo.
 
    Deploy:
-     1. npm create cloudflare@latest algebrapath-ai   (choose "Hello World" Worker), replace its code with this file
+     1. npm create cloudflare@latest al-gebra-ai   (choose "Hello World" Worker), replace its code with this file
      2. npx wrangler secret put ANTHROPIC_API_KEY
      3. (optional) set ALLOWED_ORIGIN to your site, e.g. https://yourname.github.io
      4. npx wrangler deploy, then paste the Worker URL into js/config.js as AI_PROXY_URL

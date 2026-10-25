@@ -1,4 +1,4 @@
-# AlgebraPath
+# Al-Gebra
 
 Algebra 1 and 2 learning site: short lessons, endless practice, daily goals, parent reports, worksheets and a personalized tutor. Plain HTML, CSS and JavaScript. No build step.
 
