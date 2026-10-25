@@ -11,15 +11,17 @@
   const wd = (d) => new Date(d + 'T12:00:00').toLocaleDateString(undefined, { weekday: 'short' });
   const plural = (n, w) => n + ' ' + w + (n === 1 ? '' : 's');
   const ring = (a, b) => { const p = b ? Math.min(100, Math.round((a / b) * 100)) : 0; return `<div class="ring ${p >= 100 ? 'ok' : ''}" style="--p:${p}"><span>${a}/${b}</span></div>`; };
+  const pic = (n, cls, alt) => `<picture><source media="(prefers-color-scheme: dark)" srcset="img/${n}-dark.png"><img class="${cls}" src="img/${n}.png" alt="${alt}"></picture>`;
+  const brandHTML = () => pic('emblem', 'bm', '') + pic('wordmark', 'wm', esc(NAME()));
   const toast = (m) => { const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('show'), 3800); };
   window.addEventListener('ap:toast', (e) => toast(e.detail));
 
   // =============== shared pieces ===============
   function navHTML(a, route) {
-    if (!a) return `<div class="wrap"><a class="brand" href="#/"><span class="logo">x</span>${esc(NAME())}</a><div class="right"><a class="btn ghost sm" href="#/login">Sign in</a><a class="btn sm" href="#/signup">Start free trial</a></div></div>`;
+    if (!a) return `<div class="wrap"><a class="brand" href="#/">${brandHTML()}</a><div class="right"><a class="btn ghost sm" href="#/login">Sign in</a><a class="btn sm" href="#/signup">Start free trial</a></div></div>`;
     const links = [['app', 'Home'], ['lessons', 'Lessons'], ['practice', 'Practice'], ['worksheets', 'Worksheets'], ['exam', 'Exam review'], ['tutor', 'AI tutor'], ['parent', 'Parent']];
     const ent = AP.ent(), kids = a.children;
-    return `<div class="wrap"><a class="brand" href="#/app"><span class="logo">x</span>${esc(NAME())}</a>
+    return `<div class="wrap"><a class="brand" href="#/app">${brandHTML()}</a>
       <nav class="nav" aria-label="Main">${links.map(([r, t]) => `<a href="#/${r}" class="${route === r || (r === 'lessons' && route === 'lesson') ? 'on' : ''}">${t}</a>`).join('')}</nav>
       <div class="right">${kids.length > 1 ? `<select data-change="child" aria-label="Switch student">${kids.map((c) => `<option value="${c.id}" ${c.id === a.activeChild ? 'selected' : ''}>${esc(c.name)}</option>`).join('')}</select>` : `<span class="small mute">${esc(AP.child().name)}</span>`}
       <a href="#/plans" class="chip ${ent.tier === 'basic' ? 'gray' : 'ok'}" style="text-decoration:none">${esc(ent.label)}${ent.tier === 'trial' ? ' · ' + AP.trialDaysLeft() + 'd left' : ''}</a>
@@ -72,7 +74,7 @@
     const plans = AP.PLANS, yr = S.cycle === 'yearly', a = AP.acct();
     const price = (k) => (yr ? `${money(plans[k].yearly)}<small>/year</small>` : `${money(plans[k].monthly)}<small>/month</small>`);
     return `<div class="wrap">
-    <section class="hero"><div class="eq">3x + 5 = 20 &nbsp;→&nbsp; x = 5</div>
+    <section class="hero"><div class="herologo">${pic('logo', 'hl', esc(NAME()))}</div>
       <h1>Algebra 1 &amp; 2, one small step a day</h1>
       <p class="lead">Short lessons, endless practice and a tutor that teaches the way <i>you</i> learn. Parents get a simple weekly progress report.</p>
       <div class="cta">${a ? '<a class="btn lg" href="#/app">Go to my dashboard</a>' : '<a class="btn lg" href="#/signup">Start your 7-day free trial</a><a class="btn sec lg" href="#/login">Sign in</a>'}</div>
@@ -94,6 +96,7 @@
       <details><summary>How does the free trial work?</summary><p class="mute">You get 7 days of every Premium and Family feature. When it ends you move to the free Basic plan automatically unless you choose a paid plan.</p></details>
       <details><summary>What does Basic include?</summary><p class="mute">One lesson a day, two worksheets a day, unlimited daily practice, exam-season review and weekly parent reports.</p></details>
       <details><summary>Does the quiz measure intelligence?</summary><p class="mute">No. It checks which algebra topics your student already knows so they start at the right place, and asks how they like to learn. It is not an IQ test.</p></details>
+      <details><summary>Why the name Al-Gebra?</summary><p class="mute">The word algebra comes from the Arabic <i>al-jabr</i> (الجبر), from the title of a 9th-century book by the mathematician al-Khwarizmi. The name is a nod to where algebra began.</p></details>
       <details><summary>Can siblings share one account?</summary><p class="mute">Yes. The Family plan has separate profiles, goals and reports for up to four students.</p></details>
     </section></div>${foot()}`;
   };
